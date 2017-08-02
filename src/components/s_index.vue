@@ -87,6 +87,7 @@
   var VueTouch = require('vue-touch');
   Vue.use(VueTouch, {name: 'v-touch'});
 
+
 	export default {
 		components: {
 		    swiper,
@@ -107,9 +108,24 @@
 		  	}
 		},
 		methods:{
+      GetRequest(strName){
+        var strHref = window.location.href
+        var intPos = strHref.indexOf("?");
+        var strRight = strHref.substr(intPos+1);
+        var arrTmp = strRight.split("&");
+        for(i=0;i<arrTmp.length;i++){
+          var arrTemp = arrTmp[i].split("=")
+          if(arrTemp[0].toUpperCase() == strName.toUpperCase()) {
+            return arrTemp[1]
+          }
+        }
+        return false;
+      },
       imgs(appid) {
-//        长按调用的方法
-        this.$http.get('/api/qrcode/?'+appid)
+//      长按调用的方法
+        var openid=GetRequest("openid");
+        console.log(openid);
+        this.$http.get('/admin/coin/create_token?appid='+appid+'&openid='+openid)
           .then(function (res) {
             console.log(res.data)
           }, function (err) {
