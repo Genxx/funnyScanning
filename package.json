@@ -1,8 +1,8 @@
 {
-  "name": "y",
+  "name": "Genxx",
   "version": "1.0.0",
   "description": "测试",
-  "author": "funny <1101126974@qq.com>",
+  "author": "Genxx <16479402704@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
